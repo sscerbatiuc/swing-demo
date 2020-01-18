@@ -1,5 +1,6 @@
 package edu.step.demo.gui;
 
+import edu.step.demo.dao.ValueDao;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -12,6 +13,7 @@ public class MainFrame extends javax.swing.JFrame {
     private final AddDialog addDialog;
     private final EditDialog editDialog;
     private final DefaultTableModel tableModel;
+    private final ValueDao valueDao;
 
     /**
      * Creates new form MainFrame
@@ -22,6 +24,7 @@ public class MainFrame extends javax.swing.JFrame {
         this.addDialog = new AddDialog(this, true);
         this.editDialog = new EditDialog(this, true);
         this.tableModel = (DefaultTableModel) this.jTable1.getModel();
+        this.valueDao = new ValueDao();
     }
 
     /**
@@ -160,6 +163,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         this.addDialog.setVisible(true);
         Object[] data = new Object[]{this.addDialog.getResult()};
+        this.valueDao.add(this.addDialog.getResult());
         this.tableModel.addRow(data);
     }//GEN-LAST:event_addBtnActionPerformed
 

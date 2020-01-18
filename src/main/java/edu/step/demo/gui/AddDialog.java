@@ -14,7 +14,7 @@ public class AddDialog extends javax.swing.JDialog {
     public AddDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
     }
 
     public String getResult() {
