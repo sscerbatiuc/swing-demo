@@ -6,7 +6,8 @@ package edu.step.demo.gui;
  */
 public class AddDialog extends javax.swing.JDialog {
 
-    String result;
+    private String result;
+    // private Employee emp;
 
     /**
      * Creates new form AddDialog
@@ -88,6 +89,10 @@ public class AddDialog extends javax.swing.JDialog {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         if (!this.txtFieldDialog.getText().isEmpty()) {
             this.result = this.txtFieldDialog.getText();
+            // String name = this.txtFieldName.getText();
+            // String surname = this...
+            
+            // this.employee = new Employee(name, surname, address,...);
             this.setVisible(false);
         }
     }//GEN-LAST:event_addBtnActionPerformed

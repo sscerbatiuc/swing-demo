@@ -43,6 +43,7 @@ public class ValueDao {
     
     public int add(String value) {
         String sql = "INSERT INTO app.Data(name) VALUES (?)";
+        // DELETE FROM app.Data WHERE
          try (Connection conn = connect();
                 PreparedStatement dbStatement = conn.prepareStatement(sql)) {
 

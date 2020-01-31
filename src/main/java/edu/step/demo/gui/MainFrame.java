@@ -161,6 +161,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_importJsonActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+//        AddDialog add = new AddDialog();
         this.addDialog.setVisible(true);
         Object[] data = new Object[]{this.addDialog.getResult()};
         this.valueDao.add(this.addDialog.getResult());
