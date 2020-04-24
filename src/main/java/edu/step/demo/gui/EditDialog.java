@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.step.demo.gui;
+
+import edu.step.demo.gui.model.Employee;
 
 /**
  *
@@ -11,27 +8,26 @@ package edu.step.demo.gui;
  */
 public class EditDialog extends javax.swing.JDialog {
 
-    String editedValue;
+    Employee editedValue;
 
     /**
      * Creates new form AddDialog
+     * @param parent
+     * @param modal
      */
     public EditDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
-    public String getEditedValue() {
+    public Employee getEditedValue() {
         return editedValue;
     }
 
-    public void setVisible(boolean visible) {
-        super.setVisible(visible);
-    }
-
-    public void setVisible(String editedValue, boolean visible) {
+    public void setVisible(Employee editedValue, boolean visible) {
         this.editedValue = editedValue;
-        this.txtFieldEditDialog.setText(editedValue);
+        this.nameTxtField.setText(editedValue.getName());
         super.setVisible(visible);
     }
 
@@ -44,18 +40,18 @@ public class EditDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtFieldEditDialog = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        nameTxtField = new javax.swing.JTextField();
+        labelName = new javax.swing.JLabel();
+        editBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Name");
+        labelName.setText("Name");
 
-        jButton1.setText("Edit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        editBtn.setText("Edit");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                editBtnActionPerformed(evt);
             }
         });
 
@@ -67,12 +63,12 @@ public class EditDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(jLabel1)
+                        .addComponent(labelName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtFieldEditDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(nameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(61, 61, 61)
-                        .addComponent(jButton1)))
+                        .addComponent(editBtn)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -80,23 +76,23 @@ public class EditDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFieldEditDialog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(nameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelName))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(editBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String value = this.txtFieldEditDialog.getText();
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        String value = this.nameTxtField.getText();
         if (!value.isEmpty()) {
-            this.editedValue = value;
+            this.editedValue.setName(value);
             this.setVisible(false);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_editBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,8 +138,8 @@ public class EditDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField txtFieldEditDialog;
+    private javax.swing.JButton editBtn;
+    private javax.swing.JLabel labelName;
+    private javax.swing.JTextField nameTxtField;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,5 +1,6 @@
 package edu.step.demo.dao;
 
+import edu.step.demo.gui.model.Employee;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ import java.util.Map;
  */
 public class ValueDao {
  
-   private static final String DB_URL = "jdbc:postgresql://127.0.0.1:5432/test";
+   private static final String DB_URL = "jdbc:postgresql://127.0.0.1:5432/emp_manager";
     private static final String DB_USER = "postgres";
     private static final String DB_PASS = "postgres";
 
@@ -25,7 +26,7 @@ public class ValueDao {
     }
 
     public Map<Integer, String> getAll() {
-        String sql = "SELECT id, name FROM app.Data"; // app <-> schema
+        String sql = "SELECT id, name FROM app.data"; // app <-> schema
         try (Connection conn = connect();
                 Statement statement = conn.createStatement();
                 ResultSet rs = statement.executeQuery(sql)) {
@@ -41,13 +42,12 @@ public class ValueDao {
         return null;
     }
     
-    public int add(String value) {
-        String sql = "INSERT INTO app.Data(name) VALUES (?)";
-        // DELETE FROM app.Data WHERE
+    public int add(Employee value) {
+        String sql = "INSERT INTO app.data(name) VALUES (?)";
          try (Connection conn = connect();
                 PreparedStatement dbStatement = conn.prepareStatement(sql)) {
 
-            dbStatement.setString(1, value);
+            dbStatement.setString(1, value.getName());
 
             int affectedRows = dbStatement.executeUpdate();
             System.out.println(String.format("Executed insert statement. Affected %d rows", affectedRows));
@@ -59,7 +59,7 @@ public class ValueDao {
     }
     
     public int update(int id, String value) {
-        String sql = "UPDATE app.Data SET name=? WHERE id =?";
+        String sql = "UPDATE app.data SET name=? WHERE id =?";
          try (Connection conn = connect();
                 PreparedStatement dbStatement = conn.prepareStatement(sql)) {
 
@@ -76,7 +76,7 @@ public class ValueDao {
     }
     
     public int delete(int id) {
-        String sql = "DELETE FROM app.Data WHERE id =?";
+        String sql = "DELETE FROM app.data WHERE id =?";
          try (Connection conn = connect();
                 PreparedStatement dbStatement = conn.prepareStatement(sql)) {
 

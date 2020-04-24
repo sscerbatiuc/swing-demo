@@ -1,29 +1,30 @@
 package edu.step.demo.gui;
 
 import edu.step.demo.dao.ValueDao;
+import edu.step.demo.gui.model.Employee;
+import edu.step.demo.gui.model.EmployeeTableModel;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author sscerbatiuc
  */
 public class MainFrame extends javax.swing.JFrame {
-    
+
     private final AddDialog addDialog;
     private final EditDialog editDialog;
-    private final DefaultTableModel tableModel;
     private final ValueDao valueDao;
+    private final EmployeeTableModel tableModel = new EmployeeTableModel();
 
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null); // center
         this.addDialog = new AddDialog(this, true);
         this.editDialog = new EditDialog(this, true);
-        this.tableModel = (DefaultTableModel) this.jTable1.getModel();
+        this.employeeJTable.setModel(this.tableModel);
         this.valueDao = new ValueDao();
     }
 
@@ -36,58 +37,28 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton5 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        addBtn = new javax.swing.JButton();
-        editBtn = new javax.swing.JButton();
+        employeeJTable = new javax.swing.JTable();
         deleteBtn = new javax.swing.JButton();
         exportJsonBtn = new javax.swing.JButton();
         importJson = new javax.swing.JButton();
-
-        jButton5.setText("Export JSON");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
+        addBtn = new javax.swing.JButton();
+        editBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        employeeJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+                {}
             },
             new String [] {
-                "Name"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-        });
-        jScrollPane1.setViewportView(jTable1);
-
-        addBtn.setText("Add");
-        addBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addBtnActionPerformed(evt);
-            }
-        });
-
-        editBtn.setText("Edit");
-        editBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editBtnActionPerformed(evt);
-            }
-        });
+        ));
+        jScrollPane1.setViewportView(employeeJTable);
 
         deleteBtn.setText("Delete");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -110,15 +81,29 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        addBtn.setText("Add");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
+
+        editBtn.setText("Edit");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addBtn)
                     .addComponent(editBtn)
                     .addComponent(deleteBtn)
@@ -126,12 +111,12 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(importJson))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(addBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(editBtn)
@@ -142,7 +127,20 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(importJson))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -152,39 +150,36 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_exportJsonBtnActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
     private void importJsonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importJsonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_importJsonActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-//        AddDialog add = new AddDialog();
         this.addDialog.setVisible(true);
-        Object[] data = new Object[]{this.addDialog.getResult()};
-        this.valueDao.add(this.addDialog.getResult());
-        this.tableModel.addRow(data);
+        Employee newEmployee = this.addDialog.getResult();
+        if (newEmployee != null) {
+            this.tableModel.add(newEmployee);
+        }
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        if(this.jTable1.getSelectedRow() != -1){
-            String value = String.valueOf(this.tableModel.getValueAt(this.jTable1.getSelectedRow(), 0)); // We have only one column
-            this.editDialog.setVisible(value, true);
-            Object[] data = new Object[]{this.editDialog.getEditedValue()};
-            for (int i = 0; i < data.length; i++) {
-                this.tableModel.setValueAt(data[i], this.jTable1.getSelectedRow(), i);
-            }
+        int selectedRow = this.employeeJTable.getSelectedRow();
+        if (selectedRow != -1) {
+            Employee edited = this.tableModel.get(selectedRow);
+            this.editDialog.setVisible(edited, true);
+            this.tableModel.update(selectedRow, this.editDialog.getEditedValue());
         }
     }//GEN-LAST:event_editBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        if(this.jTable1.getSelectedRow() != -1){
-            int yesNo = JOptionPane.showConfirmDialog(null,"Are you sure you want to remove the row?", "Please confitm",  JOptionPane.YES_NO_OPTION);
-            if(yesNo == JOptionPane.YES_OPTION){
-                this.tableModel.removeRow(this.jTable1.getSelectedRow());
+        int selectedRow = this.employeeJTable.getSelectedRow();
+        if (selectedRow != -1) {
+            int yesNo = JOptionPane.showConfirmDialog(null, "Are you sure you want to remove the row?", "Please confirm", JOptionPane.YES_NO_OPTION);
+            if (yesNo == JOptionPane.YES_OPTION) {
+                this.tableModel.delete(selectedRow);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Select row first", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_deleteBtnActionPerformed
 
@@ -227,10 +222,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton addBtn;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
+    private javax.swing.JTable employeeJTable;
     private javax.swing.JButton exportJsonBtn;
     private javax.swing.JButton importJson;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

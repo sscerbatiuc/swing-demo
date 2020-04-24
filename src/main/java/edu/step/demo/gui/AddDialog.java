@@ -1,16 +1,20 @@
 package edu.step.demo.gui;
 
+import edu.step.demo.gui.model.Employee;
+import java.util.Random;
+
 /**
  *
  * @author sscerbatiuc
  */
 public class AddDialog extends javax.swing.JDialog {
 
-    private String result;
-    // private Employee emp;
+    private Employee result;
 
     /**
      * Creates new form AddDialog
+     * @param parent
+     * @param modal
      */
     public AddDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -18,15 +22,15 @@ public class AddDialog extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
     }
 
-    public String getResult() {
+    public Employee getResult() {
         return result;
     }
 
     @Override
     public void setVisible(boolean value) {
-        if (value) { // если мы открываем окно - чистим данные
+        if (value) {
             this.result = null;
-            this.txtFieldDialog.setText("");
+            this.nameTxtField.setText("");
         }
         super.setVisible(value);
     }
@@ -40,13 +44,13 @@ public class AddDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtFieldDialog = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        nameTxtField = new javax.swing.JTextField();
+        labelName = new javax.swing.JLabel();
         addBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Name");
+        labelName.setText("Name");
 
         addBtn.setText("Add");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -63,9 +67,9 @@ public class AddDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(jLabel1)
+                        .addComponent(labelName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtFieldDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(nameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addComponent(addBtn)))
@@ -76,8 +80,8 @@ public class AddDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFieldDialog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(nameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelName))
                 .addGap(18, 18, 18)
                 .addComponent(addBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -87,12 +91,9 @@ public class AddDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        if (!this.txtFieldDialog.getText().isEmpty()) {
-            this.result = this.txtFieldDialog.getText();
-            // String name = this.txtFieldName.getText();
-            // String surname = this...
-            
-            // this.employee = new Employee(name, surname, address,...);
+        Random rand = new Random();
+        if (!this.nameTxtField.getText().isEmpty()) {
+            this.result = new Employee(rand.nextInt(), this.nameTxtField.getText());
             this.setVisible(false);
         }
     }//GEN-LAST:event_addBtnActionPerformed
@@ -141,7 +142,7 @@ public class AddDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
-    private javax.swing.JLabel jLabel1;
-    protected javax.swing.JTextField txtFieldDialog;
+    private javax.swing.JLabel labelName;
+    protected javax.swing.JTextField nameTxtField;
     // End of variables declaration//GEN-END:variables
 }
